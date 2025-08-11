@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Girlfriend's Pet Shop!</title>
+</head>
+<body>
+
+    <h1>Welcome to the Pet Shop! 🐾</h1>
+    <p>Find your new best friend or get supplies for your furry family member.</p>
+
+    <hr>
+
+    <h2>Featured Pets for Adoption</h2>
+    <div>
+        {% for pet in pets %}
+            <div>
+                <h3>{{ pet.name }}</h3>
+                {% if pet.image %}
+                    <img src="{{ pet.image.url }}" alt="Image of {{ pet.name }}" width="200">
+                {% endif %}
+                <p>Species: {{ pet.species }}</p>
+                <p>Price: ${{ pet.price }}</p>
+            </div>
+        {% empty %}
+            <p>No pets are featured right now. Add some in the <a href="/admin/">admin panel</a>!</p>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <h2>Featured Products</h2>
+    <div>
+        {% for product in products %}
+            <div>
+                <h3>{{ product.name }}</h3>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="Image of {{ product.name }}" width="200">
+                {% endif %}
+                <p>Price: ${{ product.price }}</p>
+            </div>
+        {% empty %}
+            <p>No products are featured right now. Add some in the <a href="/admin/">admin panel</a>!</p>
+        {% endfor %}
+    </div>
+
+    <hr>
+    <a href="{% url 'pet-list' %}">View All Pets</a> | <a href="{% url 'product-list' %}">View All Products</a>
+
+</body>
+</html>

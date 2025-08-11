@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Pets - Pet Shop</title>
+</head>
+<body>
+    <h1>All Available Pets</h1>
+    <a href="{% url 'home' %}">Back to Home</a>
+    <hr>
+    <div>
+        {% for pet in pets %}
+            <div>
+                <h3>{{ pet.name }}</h3>
+                {% if pet.image %}
+                    <img src="{{ pet.image.url }}" alt="Image of {{ pet.name }}" width="200">
+                {% endif %}
+                <p><strong>Species:</strong> {{ pet.species }}</p>
+                <p><strong>Breed:</strong> {{ pet.breed }}</p>
+                <p><strong>Age:</strong> {{ pet.age }}</p>
+                <p><strong>Price:</strong> ${{ pet.price }}</p>
+                <p>{{ pet.description }}</p>
+            </div>
+            <hr>
+        {% empty %}
+            <p>There are no pets available at the moment. Please check back soon!</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Pet Shop</title>
+</head>
+<body>
+    <h1>All Our Products</h1>
+    <a href="{% url 'home' %}">Back to Home</a>
+    <hr>
+    <div>
+        {% for product in products %}
+            <div>
+                <h3>{{ product.name }}</h3>
+                 {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="Image of {{ product.name }}" width="200">
+                {% endif %}
+                <p><strong>Category:</strong> {{ product.category.name }}</p>
+                <p><strong>Price:</strong> ${{ product.price }}</p>
+                <p>{{ product.description }}</p>
+            </div>
+            <hr>
+        {% empty %}
+            <p>There are no products available at the moment. Please check back soon!</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
