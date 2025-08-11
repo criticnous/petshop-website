@@ -6,9 +6,3 @@ pip install -r requirements.txt
 
 python manage.py collectstatic --no-input
 python manage.py migrate
-
-# This is the new part
-if [[ $DJANGO_SUPERUSER_USERNAME ]]
-then
-  python manage.py createsuperuser --no-input
-fi
